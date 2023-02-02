@@ -1,4 +1,6 @@
 import random
+import time
+import datetime
 
 menu = {
     "burger": 3.99,
@@ -48,3 +50,16 @@ time_to_wait = random.randint(1, 10)
 print(f"Order Number: {order_number}")
 print(f"Your meal will be ready in approximately {time_to_wait} minutes.")
 print("Please proceed to the counter when your order number is called.")
+
+current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+file_path = r"C:\Users\comic\Documents\GitHub\order\past-orders\order-" + current_time + ".txt"
+
+with open(file_path, "w") as file:
+    file.write("Order Summary:\n")
+    for item in items_ordered:
+        file.write(item + "\n")
+    file.write(f"Total: ${total_price:.2f}\n")
+    file.write(f"Order Number: {order_number}\n")
+    file.write(f"Time of Order: {current_time}\n")
+    file.write(f"Time to Wait: {time_to_wait} minutes")
+
