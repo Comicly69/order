@@ -1,6 +1,9 @@
 import random
 import time
 import datetime
+import getpass
+
+username = getpass.getuser()
 
 menu = {
     "burger": 3.99,
@@ -52,7 +55,7 @@ print(f"Your meal will be ready in approximately {time_to_wait} minutes.")
 print("Please proceed to the counter when your order number is called.")
 
 current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-file_path = r"C:\Users\comic\Documents\GitHub\order\past-orders\order-" + current_time + ".txt"
+file_path = r"/workspaces/order/past-orders/order-" + current_time + ".txt"
 
 with open(file_path, "w") as file:
     file.write("Order Summary:\n")
