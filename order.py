@@ -2,7 +2,8 @@ import random
 import time
 import datetime
 import getpass
-
+import random
+import string
 
 username = getpass.getuser()
 
@@ -20,6 +21,35 @@ menu = {
     "pogos": 1.00,
 
 }
+
+login_choice = input("Would you like to log in? (y/n): ")
+
+if login_choice.lower() == "y":
+    logged_in = False
+    username = input("Enter your username: ")
+
+    with open("/workspaces/order/assets/data/local_usernames.txt", "r") as file:
+        for line in file:
+            if line.strip() == username:
+                print("Logged in!")
+                logged_in = True
+                break
+
+    if logged_in:
+        session = ''.join(random.choices(string.ascii_letters + string.digits, k=12))
+        with open("/workspaces/order/options.txt", "r") as file:
+            lines = file.readlines()
+        lines[0] = "logged_in=true\n"
+        lines[1] = "user session=" + session + "\n"
+        with open("/workspaces/order/options.txt", "w") as file:
+            file.writelines(lines)
+    else:
+        print("Username not found.")
+else:
+    print("Login cancelled.")
+
+
+
 
 today = datetime.datetime.now().weekday()
 days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
@@ -148,7 +178,7 @@ discounts = [0.3, 0.25]
 
 if answer.lower() == "y":
     code = input("Please enter your discount code: ")
-    with open("C:\\Users\\comic\\Documents\\GitHub\\order\\assets\\discounts\\discounts.txt", "r") as file:
+    with open("/workspaces/order/assets/discounts/discounts.txt", "r") as file:
         for line in file:
             for c, d in zip(codes, discounts):
                 if line.strip() == code:
