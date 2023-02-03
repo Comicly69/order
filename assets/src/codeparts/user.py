@@ -6,6 +6,7 @@ def get_hwid():
 hwid = get_hwid()
 hwid_uuid = str(uuid.uuid1())
 
-with open("/workspaces/order/assets/data/userdata.txt", "w") as f:
+with open("/workspaces/order/assets/data/userdata.txt", "w", encoding='utf-8') as f:
     f.write("HWID:" + hwid + "\n")
     f.write("UUID:" + hwid_uuid + "\n")
+

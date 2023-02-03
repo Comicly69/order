@@ -4,10 +4,10 @@ import os
 # Initialize pygame
 pygame.init()
 
-# Load the image file
+# Load the menu file
 image = pygame.image.load("Menu.png")
 
-# Create the window with the desired size and remove the frame
+# Create the window
 infoObject = pygame.display.Info()
 window = pygame.display.set_mode((400, 518), pygame.NOFRAME)
 
@@ -20,7 +20,7 @@ window.blit(image, (0, 0))
 # Update the display
 pygame.display.update()
 
-# Run the game loop
+# Run the loop
 running = True
 while running:
     for event in pygame.event.get():
