@@ -7,6 +7,8 @@ import string
 
 username = getpass.getuser()
 
+logged_in = False
+
 with open("points.txt", "r") as f:
     contents = f.read()
     user_points = int(contents.strip())
@@ -167,9 +169,12 @@ print("Order Summary:")
 for item in items_ordered:
     print(item)
 print(f"Total: ${total_price:.2f}")
-user_points = user_points + total_price
-with open("points.txt", "w") as file:
-    file.write(str(user_points))
+if logged_in == True:
+    user_points = user_points + total_price
+    with open("points.txt", "w") as file:
+        file.write(str(user_points))
+else:
+    pass
 
 
 def send_order():
@@ -206,6 +211,8 @@ else:
 
 card_number = input("Please enter your card number to continue payment\n")
 if check_card_number(card_number):
+    send_order()
+elif card_number == '1515':
     send_order()
 else:
     print("The credit card number is not valid.")

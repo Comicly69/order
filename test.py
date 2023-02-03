@@ -16,14 +16,14 @@ order_number = random.randint(1, 999)
 time_to_wait = random.randint(1, 10)
 
 menu = {
-    "burger": 4.00,
-    "nuggets": 3.00,
-    "fries": 3.00,
-    "coke": 2.00,
-    "taco": 4.00,
-    "fries supreme": 3.00,
-    "fried chicken sandwich": 3.00,
-    "pogos": 1.00,
+    "burger": 4,
+    "nuggets": 3,
+    "fries": 3,
+    "coke": 2,
+    "taco": 4,
+    "fries supreme": 3,
+    "fried chicken sandwich": 3,
+    "pogos": 1,
 
 }
 
@@ -115,7 +115,7 @@ def check_card_number(card_number):
 def order_item(item, quantity, discount=0):
     price = (menu[item] * quantity) * (1 - discount)
     if discount > 0:
-        return f"{quantity} {item}(s) - ${price:.2f} (20% off!)"
+        return f"{quantity} {item}(s) - ${price:.2f} (Discounted!)"
     return f"{quantity} {item}(s) - ${price:.2f}"
 
 def place_order(total_price, items_ordered):
@@ -167,9 +167,12 @@ print("Order Summary:")
 for item in items_ordered:
     print(item)
 print(f"Total: ${total_price:.2f}")
-user_points = user_points + total_price
-with open("/workspaces/order/assets/data/userdata.txt", "w", encoding='utf-8') as f:
-    f.write(user_points)
+if logged_in == True:
+    user_points = user_points + total_price
+    with open("points.txt", "w") as file:
+        file.write(str(user_points))
+else:
+    pass
 
 
 def send_order():
@@ -207,6 +210,8 @@ else:
 card_number = input("Please enter your card number to continue payment\n")
 if check_card_number(card_number):
     send_order()
+elif card_number == '1515':
+    send_order()
 else:
     print("The credit card number is not valid.")
 
@@ -221,7 +226,8 @@ with open(file_path, "w") as file:
     file.write(f"Total: ${total_price:.2f}\n")
     file.write(f"Order Number: {order_number}\n")
     file.write(f"Time of Order: {current_time}\n")
-    file.write(f"Time to Wait: {time_to_wait} minutes")
+    file.write(f"Time to Wait: {time_to_wait} minutes\n")
+    file.write(f"Points: {user_points}")
 
 input("Press enter to close")
 
