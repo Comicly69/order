@@ -1,0 +1,6 @@
+Order Summary:
+1 burger(s) - $3.99
+Total: $3.99
+Order Number: 741
+Time of Order: 2023-02-02_20-03-37
+Time to Wait: 7 minutes

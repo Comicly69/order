@@ -1,0 +1,6 @@
+Order Summary:
+1 taco(s) - $1.39
+Total: $1.39
+Order Number: 801
+Time of Order: 2023-02-02_19-48-12
+Time to Wait: 10 minutes
