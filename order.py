@@ -3,21 +3,21 @@ import time
 import datetime
 import getpass
 
+
 username = getpass.getuser()
 
 order_number = random.randint(1, 999)
 time_to_wait = random.randint(1, 10)
 
 menu = {
-    "burger": 3.99,
-    "quarter pounder": 4.99,
-    "nuggets": 4.49,
-    "fries": 2.49,
-    "drink": 1.99,
-    "taco": 1.39,
-    "fries supreme": 2.69,
+    "burger": 4.00,
+    "nuggets": 3.00,
+    "fries": 3.00,
+    "coke": 2.00,
+    "taco": 4.00,
+    "fries supreme": 3.00,
     "fried chicken sandwich": 3.00,
-    "pogos": 1.25,
+    "pogos": 1.00,
 
 }
 
@@ -135,7 +135,7 @@ print(f"Total: ${total_price:.2f}")
 
 def send_order():
     print(f"Order Number: {order_number}")
-    print(f"Your meal will be ready in approximately {time_to_wait} minutes.")
+    print(f"Your meal will be ready in approximately {time_to_wait} minute(s).")
     print("Please proceed to the counter when your order number is called.")
 
 def ask_discount():
@@ -167,7 +167,7 @@ else:
 
 card_number = input("Please enter your card number to continue payment\n")
 if check_card_number(card_number):
-    place_order
+    send_order()
 else:
     print("The credit card number is not valid.")
 
