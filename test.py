@@ -7,6 +7,11 @@ import string
 
 username = getpass.getuser()
 
+with open("points.txt", "r") as f:
+    contents = f.read()
+    user_points = int(contents.strip())
+
+
 order_number = random.randint(1, 999)
 time_to_wait = random.randint(1, 10)
 
@@ -162,6 +167,10 @@ print("Order Summary:")
 for item in items_ordered:
     print(item)
 print(f"Total: ${total_price:.2f}")
+user_points = user_points + total_price
+with open("/workspaces/order/assets/data/userdata.txt", "w", encoding='utf-8') as f:
+    f.write(user_points)
+
 
 def send_order():
     print(f"Order Number: {order_number}")

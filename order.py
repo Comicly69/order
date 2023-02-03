@@ -7,6 +7,11 @@ import string
 
 username = getpass.getuser()
 
+with open("points.txt", "r") as f:
+    contents = f.read()
+    user_points = int(contents.strip())
+
+
 order_number = random.randint(1, 999)
 time_to_wait = random.randint(1, 10)
 
@@ -162,6 +167,8 @@ print("Order Summary:")
 for item in items_ordered:
     print(item)
 print(f"Total: ${total_price:.2f}")
+user_points = user_points + total_price
+
 
 def send_order():
     print(f"Order Number: {order_number}")
@@ -212,7 +219,8 @@ with open(file_path, "w") as file:
     file.write(f"Total: ${total_price:.2f}\n")
     file.write(f"Order Number: {order_number}\n")
     file.write(f"Time of Order: {current_time}\n")
-    file.write(f"Time to Wait: {time_to_wait} minutes")
+    file.write(f"Time to Wait: {time_to_wait} minutes\n")
+    file.write(f"Points: {user_points}")
 
 input("Press enter to close")
 
