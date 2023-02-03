@@ -1,7 +1,0 @@
-Order Summary:
-1 nuggets(s) - $3.00
-Total: $3.00
-Order Number: 822
-Time of Order: 2023-02-03_18-17-45
-Time to Wait: 4 minutes
-Points: 28

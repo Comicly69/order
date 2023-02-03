@@ -1,7 +1,0 @@
-Order Summary:
-1 burger(s) - $4.00
-Total: $4.00
-Order Number: 854
-Time of Order: 2023-02-03_18-18-05
-Time to Wait: 4 minutes
-Points: 32

@@ -231,5 +231,14 @@ with open(file_path, "w") as file:
     file.write(f"Time to Wait: {time_to_wait} minutes\n")
     file.write(f"Points: {user_points}")
 
+
+session = '0'
+with open("/workspaces/order/options.txt", "r") as file:
+    lines = file.readlines()
+lines[0] = "logged_in=False\n"
+lines[1] = "user session=" + session + "\n"
+with open("/workspaces/order/options.txt", "w") as file:
+    file.writelines(lines)
+
 input("Press enter to close")
 
