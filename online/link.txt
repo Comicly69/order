@@ -1,1 +1,3 @@
-https://comicly69-super-goldfish-94v66wx96qpfpprv.github.dev/
+https://comicly69-orange-space-chainsaw-jw6rr9g54v9hpxj.github.dev/
+
+To load all unlocal edits, go to soruce control and click pull
