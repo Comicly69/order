@@ -1,2 +1,4 @@
-HWID:0
-UUID:1a387bbc-a40f-11ed-8dde-d8f883b1aa39
+d90d56acd2707f26f101d1ba66e60dab7bc83ff937fae9828c9251cc13e74a48
+UUID:27b5aefc-a412-11ed-a079-d8f883b1aa39
+admin=true
+

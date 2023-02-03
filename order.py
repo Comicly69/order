@@ -8,10 +8,7 @@ import string
 username = getpass.getuser()
 
 logged_in = False
-
-with open("points.txt", "r") as f:
-    contents = f.read()
-    user_points = int(contents.strip())
+admin = False
 
 
 order_number = random.randint(1, 999)
@@ -29,13 +26,24 @@ menu = {
 
 }
 
+with open("C:/Users/comic/Documents/GitHub/order/assets/data/userdata.txt", "r+") as f:
+    lines = f.readlines()
+    if "d90d56acd2707f26f101d1ba66e60dab7bc83ff937fae9828c9251cc13e74a48" in "".join(lines):
+        lines[2] = "admin=true\n"
+        print("Welcome admin!")
+    else:
+        lines[2] = "admin=false\n"
+    f.seek(0)
+    f.writelines(lines)
+
+
 
 login_choice = input("Would you like to log in? (y/n): ")
 
 if login_choice.lower() == "y":
     logged_in = False
     username = input("Enter your username: ")
-    with open(r"C:\Users\comic\Documents\GitHub\order\assets\data\local_usernames.txt", "r") as file:
+    with open(r"C:\\Users\\comic\Documents\\GitHub\\order\\assets\\data\\local_usernames.txt", "r") as file:
         for line in file:
             if line.strip() == username:
                 print("Logged in!")
@@ -44,11 +52,11 @@ if login_choice.lower() == "y":
 
     if logged_in:
         session = ''.join(random.choices(string.ascii_letters + string.digits, k=12))
-        with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "r") as file:
+        with open(r"C:\\Users\\comic\\Documents\\GitHub\\order\\options.txt", "r") as file:
             lines = file.readlines()
         lines[0] = "logged_in=true\n"
         lines[1] = "user session=" + session + "\n"
-        with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "w") as file:
+        with open(r"C:\\Users\\comic\\Documents\\GitHub\\order\\options.txt", "w") as file:
             file.writelines(lines)
     else:
         print("Username not found.")
@@ -74,6 +82,9 @@ elif saleday == "saturday":
 elif saleday == "sunday":
     print("Fried Chicken Sandwich 20% off!")
 
+with open("points.txt", "r") as f:
+    contents = f.read()
+    user_points = int(contents.strip())
 
 def check_card_number(card_number):
     # Step 1: Check length.
@@ -161,6 +172,7 @@ def place_order(total_price, items_ordered):
     else:
         return total_price, items_ordered
 
+#POINTS
 total_price, items_ordered = place_order(0, [])
 print("Order Summary:")
 for item in items_ordered:
@@ -173,11 +185,12 @@ if logged_in == True:
 else:
     pass
 
-
+#GET ORDER ID
 def send_order():
     print(f"Order Number: {order_number}")
     print(f"Your meal will be ready in approximately {time_to_wait} minute(s).")
     print("Please proceed to the counter when your order number is called.")
+
 
 def ask_discount():
     answer = input("Would you like to enter a discount code (y/n)? This will override current discounts. ")
@@ -187,10 +200,11 @@ answer = ask_discount()
 codes = ["xigY9jo5bA", "fK7sfOr3J2"]
 discounts = [0.3, 0.25]
 
+#DISCOUNT CODES
 if answer.lower() == "y":
     code = input("Please enter your discount code: ")
     discount = 0
-    with open(r"C:\Users\comic\Documents\GitHub\order\assets\discounts\discounts.txt", "r") as file:
+    with open(r"C:\\Users\\comic\\Documents\\GitHub\\order\\assets\\discounts\\discounts.txt", "r") as file:
         for line in file:
             for c, d in zip(codes, discounts):
                 if line.strip() == code:
@@ -207,7 +221,7 @@ else:
     print("No discount being applied")
 
 
-
+#PAYMENT
 card_number = input("Please enter your card number to continue payment\n")
 if check_card_number(card_number):
     send_order()
@@ -218,8 +232,9 @@ else:
 
 
 current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-file_path = r"C:\Users\comic\Documents\GitHub\order\past-orders\order-" + current_time + ".txt"
+file_path = r"C:\\Users\\comic\\Documents\\GitHub\\order\\past-orders\\order-" + current_time + ".txt"
 
+#ORDER SUMMARY
 with open(file_path, "w") as file:
     file.write("Order Summary:\n")
     for item in items_ordered:
@@ -230,13 +245,14 @@ with open(file_path, "w") as file:
     file.write(f"Time to Wait: {time_to_wait} minutes\n")
     file.write(f"Points: {user_points}")
 
-
+#RESET USERDATA
 session = '0'
-with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "r") as file:
+with open(r"C:\\Users\\comic\\Documents\\GitHub\\order\\options.txt", "r") as file:
     lines = file.readlines()
 lines[0] = "logged_in=False\n"
 lines[1] = "user session=" + session + "\n"
-with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "w") as file:
+lines[2] = "admin=False"
+with open(r"C:\\Users\\comic\\Documents\\GitHub\\order\\options.txt", "w") as file:
     file.writelines(lines)
 
 

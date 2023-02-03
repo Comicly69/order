@@ -1,0 +1,7 @@
+Order Summary:
+1 burger(s) - $4.00
+Total: $4.00
+Order Number: 643
+Time of Order: 2023-02-03_17-13-12
+Time to Wait: 8 minutes
+Points: 52
