@@ -5,19 +5,86 @@ import getpass
 
 username = getpass.getuser()
 
+order_number = random.randint(1, 999)
+time_to_wait = random.randint(1, 10)
+
 menu = {
     "burger": 3.99,
     "quarter pounder": 4.99,
     "nuggets": 4.49,
     "fries": 2.49,
-    "drink": 1.99
+    "drink": 1.99,
+    "taco": 1.39,
+    "fries supreme": 2.69,
+    "fried chicken sandwich": 3.00,
+    "pogos": 1.25,
+
 }
 
-def order_item(item, quantity):
-    price = menu[item] * quantity
+today = datetime.datetime.now().weekday()
+days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+saleday = days[today]
+
+if saleday == "monday":
+    print("Burgers 20% off!\n")
+elif saleday == "tuesday":
+    print("Tacos 15% off!\n")
+elif saleday == "wendsday":
+    print("Nuggets 25% off!\n")
+elif saleday == "thursday":
+    print("Drinks 10% off!")
+elif saleday == "friday":
+    print("Pogos 10% off!")
+elif saleday == "saturday":
+    print("Fries supreme 20% off!")
+elif saleday == "sunday":
+    print("Fried Chicken Sandwich 20% off!")
+
+def check_card_number(card_number):
+    # Step 1: Check length.
+    if len(card_number) < 13 or len(card_number) > 19:
+        return False
+
+    # Step 2: Convert to integer.
+    card_number = [int(x) for x in card_number]
+
+    # Step 3: Check prefix.
+    if card_number[0] == 4:
+        prefix = "Visa"
+    elif card_number[0] == 5:
+        prefix = "Mastercard"
+    elif card_number[0] == 3 and (card_number[1] == 4 or card_number[1] == 7):
+        prefix = "American Express"
+    elif card_number[0] == 6:
+        prefix = "Discover"
+    else:
+        return False
+
+    # Step 4: Check the Luhn algorithm.
+    sum_ = 0
+    for i, x in enumerate(reversed(card_number)):
+        if i % 2 == 1:
+            x *= 2
+            if x > 9:
+                x -= 9
+        sum_ += x
+
+    # Step 5: Check if the sum is divisible by 10.
+    if sum_ % 10 == 0:
+        return True
+    else:
+        return False
+
+
+def order_item(item, quantity, discount=0):
+    price = (menu[item] * quantity) * (1 - discount)
+    if discount > 0:
+        return f"{quantity} {item}(s) - ${price:.2f} (20% off!)"
     return f"{quantity} {item}(s) - ${price:.2f}"
 
 def place_order(total_price, items_ordered):
+    today = datetime.datetime.now().strftime("%A").lower()
+
     print("Menu:")
     for item, price in menu.items():
         print(f"{item}: ${price:.2f}")
@@ -33,9 +100,26 @@ def place_order(total_price, items_ordered):
     except ValueError:
         print("Invalid quantity. Please try again.")
         return place_order(total_price, items_ordered)
+
+    discount = 0
+    if item_key.lower() == "burger" and today == "monday":
+        discount = 0.2
+    if item_key.lower() == "taco" and today == "tuesday":
+        discount = 0.15
+    if item_key.lower() == "nuggets" and today == "wendsay":
+        discount = 0.25
+    if item_key.lower() == "drink" and today == "thursday":
+        discount = 0.1
+    if item_key.lower() == "pogo" and today == "friday":
+        discount = 0.1
+    if item_key.lower() == "fries supreme" and today == "saturday":
+        discount = 0.2
+    if item_key.lower() == "fried chicken sandwich" and today == "sunday":
+        discount = 0.2
+
     item_price = menu[item_key] * quantity
-    total_price += item_price
-    items_ordered.append(order_item(item_key, quantity))
+    total_price += item_price * (1 - discount)
+    items_ordered.append(order_item(item_key, quantity, discount))
     more = input("Would you like to order more? (y/n) ")
     if more.lower() == 'y':
         return place_order(total_price, items_ordered)
@@ -48,14 +132,20 @@ for item in items_ordered:
     print(item)
 print(f"Total: ${total_price:.2f}")
 
-order_number = random.randint(1, 999)
-time_to_wait = random.randint(1, 10)
-print(f"Order Number: {order_number}")
-print(f"Your meal will be ready in approximately {time_to_wait} minutes.")
-print("Please proceed to the counter when your order number is called.")
+def send_order():
+    print(f"Order Number: {order_number}")
+    print(f"Your meal will be ready in approximately {time_to_wait} minutes.")
+    print("Please proceed to the counter when your order number is called.")
+
+card_number = input("Please enter your card number to continue payment\n")
+if check_card_number(card_number):
+    send_order()
+else:
+    print("The credit card number is not valid.")
+
 
 current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-file_path = r"/workspaces/order/past-orders/order-" + current_time + ".txt"
+file_path = r"C:\Users\comic\Documents\GitHub\order\past-orders\order-" + current_time + ".txt"
 
 with open(file_path, "w") as file:
     file.write("Order Summary:\n")
@@ -65,4 +155,6 @@ with open(file_path, "w") as file:
     file.write(f"Order Number: {order_number}\n")
     file.write(f"Time of Order: {current_time}\n")
     file.write(f"Time to Wait: {time_to_wait} minutes")
+
+input("Press enter to close")
 

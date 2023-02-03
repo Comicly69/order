@@ -1,0 +1,6 @@
+Order Summary:
+1 fried chicken sandwich(s) - $3.00
+Total: $3.00
+Order Number: 442
+Time of Order: 2023-02-02_18-35-05
+Time to Wait: 7 minutes
