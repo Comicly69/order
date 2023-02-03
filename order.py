@@ -29,13 +29,13 @@ menu = {
 
 }
 
+
 login_choice = input("Would you like to log in? (y/n): ")
 
 if login_choice.lower() == "y":
     logged_in = False
     username = input("Enter your username: ")
-
-    with open("C:\Users\comic\Documents\GitHub\order\assets\data\local_usernames.txt", "r") as file:
+    with open(r"C:\Users\comic\Documents\GitHub\order\assets\data\local_usernames.txt", "r") as file:
         for line in file:
             if line.strip() == username:
                 print("Logged in!")
@@ -44,19 +44,16 @@ if login_choice.lower() == "y":
 
     if logged_in:
         session = ''.join(random.choices(string.ascii_letters + string.digits, k=12))
-        with open("C:\Users\comic\Documents\GitHub\order\options.txt", "r") as file:
+        with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "r") as file:
             lines = file.readlines()
         lines[0] = "logged_in=true\n"
         lines[1] = "user session=" + session + "\n"
-        with open("C:\Users\comic\Documents\GitHub\order\options.txt", "w") as file:
+        with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "w") as file:
             file.writelines(lines)
     else:
         print("Username not found.")
 else:
     print("Login cancelled.")
-
-
-
 
 today = datetime.datetime.now().weekday()
 days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
@@ -192,7 +189,8 @@ discounts = [0.3, 0.25]
 
 if answer.lower() == "y":
     code = input("Please enter your discount code: ")
-    with open("C:\Users\comic\Documents\GitHub\order\assets\discounts\discounts.txt", "r") as file:
+    discount = 0
+    with open(r"C:\Users\comic\Documents\GitHub\order\assets\discounts\discounts.txt", "r") as file:
         for line in file:
             for c, d in zip(codes, discounts):
                 if line.strip() == code:
@@ -207,6 +205,7 @@ if answer.lower() == "y":
         print("Discount code not found")
 else:
     print("No discount being applied")
+
 
 
 card_number = input("Please enter your card number to continue payment\n")
@@ -233,12 +232,13 @@ with open(file_path, "w") as file:
 
 
 session = '0'
-with open("C:\Users\comic\Documents\GitHub\order\options.txt", "r") as file:
+with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "r") as file:
     lines = file.readlines()
 lines[0] = "logged_in=False\n"
 lines[1] = "user session=" + session + "\n"
-with open("C:\Users\comic\Documents\GitHub\order\options.txt", "w") as file:
+with open(r"C:\Users\comic\Documents\GitHub\order\options.txt", "w") as file:
     file.writelines(lines)
+
 
 input("Press enter to close")
 

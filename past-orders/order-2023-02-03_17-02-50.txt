@@ -1,0 +1,7 @@
+Order Summary:
+1 burger(s) - $4.00
+Total: $4.00
+Order Number: 847
+Time of Order: 2023-02-03_17-02-50
+Time to Wait: 9 minutes
+Points: 48
