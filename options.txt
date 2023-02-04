@@ -1,4 +1,3 @@
-logged_in=true
-user session=xwnR1XNGKSxq
-admin=
-online=
+logged_in=False
+user session=0
+admin=False

@@ -1,0 +1,8 @@
+Order Summary:
+1 burger(s) - $4.00
+1 fries(s) - $3.00
+Total: $7.00
+Order Number: 715
+Time of Order: 2023-02-03_21-35-42
+Time to Wait: 4 minutes
+Points: 7
