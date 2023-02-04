@@ -1,3 +1,3 @@
-logged_in=False
-user session=0
+logged_in=true
+user session=UGOMf74xbLTA
 admin=False

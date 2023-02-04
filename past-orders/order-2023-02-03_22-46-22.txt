@@ -1,0 +1,7 @@
+Order Summary:
+1 fries(s) - $3.00
+Total: $2.250
+Order Number: 689
+Time of Order: 2023-02-03_22-46-22
+Time to Wait: 1 minutes
+Points: 32

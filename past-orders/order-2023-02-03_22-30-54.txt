@@ -1,0 +1,7 @@
+Order Summary:
+1 taco(s) - $4.00
+Total: $4.00
+Order Number: 817
+Time of Order: 2023-02-03_22-30-54
+Time to Wait: 2 minutes
+Points: 19

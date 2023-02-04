@@ -1,0 +1,7 @@
+Order Summary:
+1 coke(s) - $2.00
+Total: $1.5
+Order Number: 438
+Time of Order: 2023-02-03_22-48-50
+Time to Wait: 7 minutes
+Points: 34
